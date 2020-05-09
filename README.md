@@ -4,6 +4,17 @@ A teaching system like google classroom
 
 [Original description](http://webprogramozas.inf.elte.hu/#!/subjects/webprog-server/beadando/2019-20-2/lms)
 
+## Getting started
+
+To run the app, you need the following 4 command
+
+```bash
+composer install
+php artisan migrate:fresh
+php artisan db:seed --class=LmsSeeder
+php artisan serve
+```
+
 ## License
 
 ```
