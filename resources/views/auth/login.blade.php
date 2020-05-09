@@ -8,15 +8,6 @@
             <div class="card-header">{{ __('Belépés') }}</div>
 
                 <div class="card-body">
-                    <div class="col-md-6">
-                        <p><b>Tanárok: </b>{{ DB::table('users')->where('teacher', '1')->count() }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><b>Diákok: </b>{{ DB::table('users')->where('teacher', '0')->count() }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><b>Tantárgyak: </b>{{ DB::table('subjects')->count() }}</p>
-                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -62,18 +53,60 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="ui submit button primary">
                                     {{ __('Belépés') }}
                                 </button>
 
-                                {{-- @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif --}}
+                                @endif
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 40px">
+                <div class="card-header">Statisztika</div>
+
+                <div class="card-body">
+                    <div class="ui grid stackable">
+                        
+                        <div class="row">
+                            <div class="eight wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="eight wide right aligned column content"><span class="ui sub header">Tanárok</span></div>
+                                        <div class="eight wide left aligned column">{{ DB::table('users')->where('teacher', '1')->count() }}</div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="eight wide right aligned column content"><span class="ui sub header">Diákok</span></div>
+                                        <div class="eight wide left aligned column">{{ DB::table('users')->where('teacher', '0')->count() }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="eight wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="eight wide right aligned column content"><span class="ui sub header">Feladatok</span></div>
+                                        <div class="eight wide left aligned column">0</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="eight wide right aligned column content"><span class="ui sub header">Megoldások</span></div>
+                                        <div class="eight wide left aligned column">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
                 </div>
             </div>
         </div>

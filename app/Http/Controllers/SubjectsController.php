@@ -84,4 +84,19 @@ class SubjectsController extends Controller
         Subject::find($id)->delete();
         return redirect(RouteServiceProvider::HOME);
     } 
+
+    public function list() {
+        $data = Subject::all()->where('public', true)->diff(Auth::user()->subjects);
+        return view('home', ['data' => $data]);
+    }
+
+    public function subscribe($subjectId) {
+        Auth::user()->subjects()->attach(Subject::find($subjectId));
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function unSubscribe($subjectId) {
+        Auth::user()->subjects()->detach(Subject::find($subjectId));
+        return redirect(RouteServiceProvider::HOME);
+    }
 }

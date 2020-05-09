@@ -10,15 +10,25 @@
                     <div class="ui grid">
 
                             <div class="eight wide column">
-                                @if (Auth::user()->teacher)
-                                Tárgyaim
+                                @if (Route::getCurrentRoute()->getName() == 'subjectsList')
+                                    Publikus tárgyak
                                 @else
-                                Felvett tárgyak
+                                    @if (Auth::user()->teacher)
+                                    Tárgyaim
+                                    @else
+                                        
+                                    Felvett tárgyak
+                                    @endif
                                 @endif
                             </div>
                             
                             <div class="eight wide right aligned column">
-                                <a class="ui basic button blue" href={{route('newSubjectForm')}}>Új tantárgy</a>
+                                @if (Auth::user()->teacher)
+                                    <a class="ui basic button blue" href={{route('newSubjectForm')}}>Új tantárgy</a>
+                                @else
+                                    <a href={{route('subjectsList')}} class="ui basic button blue">Tantárgy felvétele</a>
+                                @endif
+                                
                             </div>
 
                     </div>
@@ -33,10 +43,11 @@
                     @endif
 
                     <div class="ui comments" style="max-width: none">
-                    @for ($i = 0; $i < count($data); $i++)
-                            @php
-                                $sbj = $data[$i]
-                            @endphp     
+                    
+                        @for ($i = 0; $i < count($data); $i++)
+                                @php
+                                    $sbj = $data[$i];
+                                @endphp
                                 <div class="ui segment">
                                     <div class="comment">
                                         <div class="ui grid very relaxed">
@@ -46,19 +57,33 @@
                                                     <div class="metadata">
                                                         <div class="primary text">{{ $sbj['code'] }}</div>
                                                         <div class="">{{ $sbj['kredit'] }} kredit</div>
+                                                        <div class="sub header">{{ $sbj->teacher->name }}</div>
                                                     </div>
                                                     <div class="text">{{ $sbj['description'] ?? 'Nincs leírás'}}</div>
                                                 </div>
                                             </div>
 
                                             <div class="four wide column center aligned">
-                                                <a href={{route('togglePrivacy', $sbj['id'])}}>
-                                                @if ($sbj['public'])
-                                                    <button class="small purple basic button ui">Publikálás visszavonása</button>
-                                                @else
-                                                    <button class="small negative basic button ui">Publikálás</button>
+                                                @if (Auth::user()->teacher)
+ 
+                                                    <a href={{route('togglePrivacy', $sbj['id'])}}>
+                                                    @if ($sbj['public'])
+                                                        <button class="small purple basic button ui">Publikálás visszavonása</button>
+                                                    @else
+                                                        <button class="small negative basic button ui">Publikálás</button>
+                                                    @endif
+                                                    </a>
+                                                @else 
+
+                                                    
+                                                    @if (Auth::user()->isSubscribedTo($sbj))
+                                                        <a href={{route('unSubscribe', $sbj->id)}} class="small negative basic button ui">Leiratkozás</a>
+                                                        @else
+                                                        <a href={{route('subscribe', $sbj->id)}} class="small purple basic button ui">Feliratkozás</a>
+                                                    @endif
+                                                    
+
                                                 @endif
-                                                </a>
                                             </div>
                                         </div>
                                     </div>

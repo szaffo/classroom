@@ -38,6 +38,15 @@ class User extends Authenticatable
     ];
 
     public function subjects(){
-        return $this->hasMany('App\Subject');
+        if ($this->teacher) {
+            return $this->hasMany('App\Subject');
+        } else {
+            return $this->belongsToMany('App\Subject')->as('subscription');
+        }
+    }
+
+
+    public function isSubscribedTo($subject) {
+        return $this->subjects->contains($subject);
     }
 }

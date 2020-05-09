@@ -23,8 +23,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){        
-        $data = Auth::user()->subjects()->get();
-        // DB::table('subjects')
+        $data = Auth::user()->subjects;
         return view('home', ['data' => $data]);
     }
 

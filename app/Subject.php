@@ -9,7 +9,11 @@ class Subject extends Model {
     use SoftDeletes;
     
     public function teacher(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function users()    {
+        return $this->belongsToMany('App\User');
     }
     
     protected $fillable = [

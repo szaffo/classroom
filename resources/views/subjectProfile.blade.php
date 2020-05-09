@@ -16,8 +16,16 @@
                             </div>
                             
                             <div class="eight wide right aligned column">
-                                <a class="positive basic ui button" href={{route('subjectEdit', $data['id'])}}>Módosítás</a>
-                                <a class="negative basic ui button" href={{route('subjectDelete', $data['id'])}}>Törlés</a>
+                                @if (Auth::user()->teacher)
+                                    <a class="positive basic ui button" href={{route('subjectEdit', $data['id'])}}>Módosítás</a>
+                                    <a class="negative basic ui button" href={{route('subjectDelete', $data['id'])}}>Törlés</a>
+                                @else 
+                                    @if (Auth::user()->isSubscribedTo($data))
+                                        <a class="negative basic ui button" href={{route('unSubscribe', $data['id'])}}>Leiratkozás</a>
+                                        @else
+                                        <a class="purple basic ui button" href={{route('subscribe', $data['id'])}}>Feliratkozás</a>
+                                    @endif
+                                @endif
                             </div>
                             
 
@@ -41,6 +49,10 @@
                             <div class="twelve wide left aligned column">{{$data['code']}}</div>
                         </div>
                         <div class="row">
+                            <div class="four wide right aligned column content"><span class="ui sub header">Tanár</span></div>
+                            <div class="twelve wide left aligned column">{{$data->teacher->name}}</div>
+                        </div>
+                        <div class="row">
                             <div class="four wide right aligned column content"><span class="ui sub header">Kredit</span></div>
                             <div class="twelve wide left aligned column">{{$data['kredit']}}</div>
                         </div>
@@ -61,8 +73,15 @@
                             <div class="twelve wide left aligned column">0</div>
                         </div>
                         <div class="row">
-                            <div class="four wide right aligned column content"><span class="ui sub header">Diákok</span></div>
-                            <div class="twelve wide left aligned column">Nincs jelentkezett diák</div>
+                            <div class="four wide right aligned column content"><span class="ui sub header">Feliratkozottak</span></div>
+                            <div class="twelve wide left aligned column">
+                                @forelse ($data->users as $user)
+                                    <div>{{$user->name}} - {{$user->email}}</div>  
+                                @empty
+                                    Nincs feliratkozott  
+                                @endforelse
+                            </div>
+                            
                         </div>
                     </div>
 
