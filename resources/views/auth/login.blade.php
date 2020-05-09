@@ -72,7 +72,30 @@
                 <div class="card-header">Statisztika</div>
 
                 <div class="card-body">
-                    <div class="ui grid stackable">
+                    <div class="ui statistics four">
+                        <div class="statistic">
+                            <div class="label">Tanárok</div>
+                            <div class="value">{{ DB::table('users')->where('teacher', '1')->count() }}</div>
+                        </div>
+                        <div class="statistic">
+                            <div class="label">Diákok</div>
+                            <div class="value">{{ DB::table('users')->where('teacher', '0')->count() }}</div>
+                        </div>
+                        <div class="statistic">
+                            <div class="label">Feladatok</div>
+                            <div class="value">{{ DB::table('tasks')->count() }}</div>
+                        </div>
+                        <div class="statistic">
+                            <div class="label">Megoldások</div>
+                            <div class="value">0</div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- <div class="ui grid stackable">
                         
                         <div class="row">
                             <div class="eight wide column">
@@ -105,7 +128,7 @@
                             </div>
                         </div>
                         
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
