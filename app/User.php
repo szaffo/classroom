@@ -51,7 +51,11 @@ class User extends Authenticatable
     }
 
     public function solutions() {
-        return $this->hasMany(App\Solution);
+        return $this->hasMany('App\Solution');
+    }
+
+    public function solutionsByTask($taskId) {
+        return $this->hasMany('App\Solution')->where('task_id', '=', $taskId);
     }
 
 }

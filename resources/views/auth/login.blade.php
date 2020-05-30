@@ -83,11 +83,11 @@
                         </div>
                         <div class="statistic">
                             <div class="label">Feladatok</div>
-                            <div class="value">{{ DB::table('tasks')->count() }}</div>
+                            <div class="value">{{\App\Task::all()->count()}}</div>
                         </div>
                         <div class="statistic">
                             <div class="label">Megoldások</div>
-                            <div class="value">0</div>
+                            <div class="value">{{ \App\Solution::all()->count() }}</div>
                         </div>
                     </div>
 

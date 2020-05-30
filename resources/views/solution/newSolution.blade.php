@@ -20,7 +20,9 @@
 
                             <div class="row">
                                 <div class="four wide right aligned column content"><span class="ui sub header">Tárgy neve</span></div>
-                                <div class="twelve wide left aligned column">{{$task->subject->name}}</div>
+                                <div class="twelve wide left aligned column">
+                                    <a href="{{route('subjectProfile', $task->subject->id)}}">{{$task->subject->name}}</a>
+                                </div>
                             </div>
 
                             <div class="row">
@@ -69,13 +71,13 @@
                                         @csrf
 
                                         <input type="hidden" name="taskId" id="taskId" value="{{old('taskId', $taskId)}}">
-                                        <input type="hidden" name="subjectId" id="subjectId" value="{{old('subjectId', $task->subject->id)}}">
+{{--                                        <input type="hidden" name="subjectId" id="subjectId" value="{{old('subjectId', $task->subject->id)}}">--}}
 
                                         <div class="form-group row">
                                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Megoldás szövege') }}</label>
 
                                             <div class="col-md-6">
-                                                <textarea class="form-control @error('content') is-invalid @enderror" id="content" rows="3" name="content" autocomplete="content">{{{ old('content') }}}</textarea>
+                                                <textarea required   class="form-control @error('content') is-invalid @enderror" id="content" rows="3" name="content" autocomplete="content">{{{ old('content') }}}</textarea>
                                                 @error('content')
                                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
