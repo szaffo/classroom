@@ -13,10 +13,10 @@ class SubjectsController extends Controller
         $this->middleware('auth');
     }
 
-    public function newSubject() {
+    public function new() {
         if (Auth::user()->teacher) {
             $data = (object) array('name' => '', 'code'=>'', 'description'=>'', 'kredit' => '', 'origin' => 'home', 'id' => 0);
-            return view('newSubject', ['data' => $data]);
+            return view('subject.newSubject', ['data' => $data]);
         }
         return redirect(RouteServiceProvider::HOME);
     }
@@ -38,7 +38,7 @@ class SubjectsController extends Controller
                 'kredit' => $request->input('kredit'),
                 'user_id' => Auth::user()->id,
             ]);
-        
+
         // Edit existing subject
         } else if ($request->input('origin') == 'profile') {
             $validatedData = $request->validate([
@@ -54,7 +54,7 @@ class SubjectsController extends Controller
                 'code' => $request->input('code'),
                 'kredit' => $request->input('kredit'),
             ]);
-            return redirect(route('subjectProfile', $request->input('id')));
+            return redirect(route('subject.subjectProfile', $request->input('id')));
         }
 
 
@@ -70,20 +70,20 @@ class SubjectsController extends Controller
     }
 
     public function profile($id) {
-        return view('subjectProfile', ['data' => Subject::find($id)]);
+        return view('subject.subjectProfile', ['data' => Subject::find($id)]);
     }
 
     public function edit($id) {
         $data = Subject::find($id);
         $data['origin'] = 'profile';
         $data['id'] = $id;
-        return view('newSubject', ['data' => $data]);
+        return view('subject.newSubject', ['data' => $data]);
     }
 
     public function delete($id) {
         Subject::find($id)->delete();
         return redirect(RouteServiceProvider::HOME);
-    } 
+    }
 
     public function list() {
         $data = Subject::all()->where('public', true)->diff(Auth::user()->subjects);

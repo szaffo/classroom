@@ -41,7 +41,7 @@ class User extends Authenticatable
         if ($this->teacher) {
             return $this->hasMany('App\Subject');
         } else {
-            return $this->belongsToMany('App\Subject')->as('subscription');
+            return $this->belongsToMany('App\Subject')->as('subscription')->where('public', '1');
         }
     }
 
@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function isSubscribedTo($subject) {
         return $this->subjects->contains($subject);
     }
+
+    public function solutions() {
+        return $this->hasMany(App\Solution);
+    }
+
 }

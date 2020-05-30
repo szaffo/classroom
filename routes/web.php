@@ -13,7 +13,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
 Route::get('/subject/list', 'SubjectsController@list')->name('subjectsList');
-Route::get('/subject/new', 'SubjectsController@newSubject')->name('newSubjectForm');
+Route::get('/subject/new', 'SubjectsController@new')->name('newSubjectForm');
 Route::post('/subject/new', 'SubjectsController@validateForm')->name('newSubjectPost');
 Route::get('/subject/{id}/togglePrivacy', 'SubjectsController@togglePrivacy')->name('togglePrivacy');
 Route::get('/subject/{id}', 'SubjectsController@profile')->name('subjectProfile');
@@ -21,3 +21,13 @@ Route::get('/subject/{id}/edit', 'SubjectsController@edit')->name('subjectEdit')
 Route::get('/subject/{id}/delete', 'SubjectsController@delete')->name('subjectDelete');
 Route::get('/subject/{id}/subscribe', 'SubjectsController@subscribe')->name('subscribe');
 Route::get('/subject/{id}/unSubscribe', 'SubjectsController@unSubscribe')->name('unSubscribe');
+
+Route::get('/taskList', 'TasksController@list')->name('taskList');
+Route::get('/subject/{id}/task/new', 'TasksController@new')->name('newTaskForm');
+Route::post('/subject/{id}/task/new', 'TasksController@validateForm')->name('newTaskPost');
+Route::get('/task/{id}', 'TasksController@profile')->name('taskProfile');
+Route::get('/task/{id}/edit', 'TasksController@edit')->name('taskEdit');
+Route::get('/task/{id}/delete', 'TasksController@delete')->name('taskDelete');
+
+Route::get('/task/{id}/solve', 'SolutionsController@new')->name('newSolution');
+Route::post('/task/{id}/solve', 'SolutionsController@validateForm')->name('newSolution');

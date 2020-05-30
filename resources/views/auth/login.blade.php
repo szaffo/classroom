@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="ui submit button primary">
+                                <button type="submit" class="ui button primary">
                                     {{ __('Belépés') }}
                                 </button>
 
@@ -96,7 +96,7 @@
 
 
                     {{-- <div class="ui grid stackable">
-                        
+
                         <div class="row">
                             <div class="eight wide column">
                                 <div class="ui grid">
@@ -112,7 +112,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="eight wide column">
                                 <div class="ui grid">
                                     <div class="row">
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div> --}}
 
                 </div>
