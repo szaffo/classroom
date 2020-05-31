@@ -31,3 +31,6 @@ Route::get('/task/{id}/delete', 'TasksController@delete')->name('taskDelete');
 
 Route::get('/task/{id}/solve', 'SolutionsController@new')->name('newSolution');
 Route::post('/task/{id}/solve', 'SolutionsController@validateForm')->name('newSolution');
+Route::get('/solution/{id}/valuate', 'SolutionsController@valuate')->name('solutionValuate');
+Route::post('/solution/valuate', 'SolutionsController@valuatePost')->name('valuatePost');
+Route::get('/solution/{id}/download', 'SolutionsController@download')->name('solutionDownload');

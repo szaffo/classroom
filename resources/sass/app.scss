@@ -8,4 +8,7 @@
 @import 'main';
 
 // Bootstrap
-//@import '~bootstrap/scss/bootstrap';
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+
+// Semantic UI CSS
+@import url('https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css');

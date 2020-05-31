@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.left-border-green {
-  border-left: 2px solid green;
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css);@import url(https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css);.left-border-green {
+  border-left: 2px solid green !important;
 }
 

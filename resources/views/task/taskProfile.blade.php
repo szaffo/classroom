@@ -112,14 +112,17 @@
                             @if ($solution->value)
                                 <td class="center aligned collapsing">Értékelve</td>
                                 <td class="center aligned collapsing">{{$solution->value}} pont</td>
-                                <td class="center aligned collapsing">{{$solution->valueted_at}}</td>
+                                <td class="center aligned collapsing">{{$solution->valuated_at}}</td>
                             @else
-                                <td class="center aligned collapsing" colspan="3">Még nem értékelt</td>
+                                <td class="center aligned collapsing" colspan="2">Még nem értékelt</td>
+                                <td class="center aligned collapsing">
+                                    <a href="{{route('solutionValuate', $solution->id)}}" class="ui button basic positive">Értékelés</a>
+                                </td>
                             @endif
 
                         </tr>
                 @empty
-                    <tr><td>Nincs megoldás a tárgyhoz</td></tr>
+                    <tr><td>Nincs megoldás a feladathoz</td></tr>
                 @endforelse
                 </tbody>
             </table>

@@ -48,11 +48,9 @@
                                         <div class="content active">
                                             <p class="transition visible" style="display: block !important;">{{$task->description}}</p>
                                         </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
+                                     </div>
+                                 </div>
+                             </div>
 
                             <div class="row">
                                 <div class="four wide right aligned column content"><span class="ui sub header">Pontszám</span></div>
@@ -67,7 +65,7 @@
                             <div class="ui divider"></div>
                             <div class="row">
                                 <div class="sixteen wide column">
-                                    <form method="POST" action="">
+                                    <form method="POST" action="" enctype="multipart/form-data">
                                         @csrf
 
                                         <input type="hidden" name="taskId" id="taskId" value="{{old('taskId', $taskId)}}">
@@ -77,11 +75,25 @@
                                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Megoldás szövege') }}</label>
 
                                             <div class="col-md-6">
-                                                <textarea required   class="form-control @error('content') is-invalid @enderror" id="content" rows="3" name="content" autocomplete="content">{{{ old('content') }}}</textarea>
+                                                <textarea required class="form-control @error('content') is-invalid @enderror" id="content" rows="3" name="content" autocomplete="content">{{{ old('content') }}}</textarea>
                                                 @error('content')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="file" class="col-md-4 col-form-label text-md-right">{{ __('Megoldás szövege') }}</label>
+
+                                            <div class="col-md-6">
+                                               <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file" autocomplete="file" value="{{ old('file') }}">
+
+                                                @error('file')
                                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
