@@ -2,6 +2,8 @@
 
 use App\User;
 use App\Subject;
+use App\Solution;
+use App\Task;
 
 use Illuminate\Database\Seeder;
 
@@ -13,13 +15,15 @@ class LmsSeeder extends Seeder
      * @return void
      */
     public function run(){
-       
+
         // Delete previous data in tables
         User::truncate();
         Subject::truncate();
+        Task::truncate();
+        Solution::truncate();
         DB::table('subject_user')->delete();
 
-        // Create fake teacher ans student
+        // Create fake teacher and student
         DB::table('users')->insert([
             'name' => 'Fikcionális Béla',
             'email' => 'tanar@iskola.hu',
@@ -28,7 +32,7 @@ class LmsSeeder extends Seeder
         ]);
 
         $this->command->info('User created. You can login as tanar@iskola.hu with the password \'tanar\'.');
-    
+
         DB::table('users')->insert([
             'name' => 'Stréber Kitti',
             'email' => 'diak@iskola.hu',
@@ -38,7 +42,16 @@ class LmsSeeder extends Seeder
 
         $this->command->info('User created. You can login as diak@iskola.hu with the password \'diak\'.');
 
-        // Create subjects for the fake teacher 
+        DB::table('users')->insert([
+            'name' => 'Okos Petra',
+            'email' => 'diak2@iskola.hu',
+            'password' => Hash::make('diak'),
+            'teacher' => false,
+        ]);
+
+        $this->command->info('User created. You can login as diak2@iskola.hu with the password \'diak\'.');
+
+        // Create subjects for the fake teacher
         Subject::create([
             'name' => 'Szerveroldali webprogramozás',
             'description' => 'Learning management szoftver készítése Laravel-ben',
@@ -76,6 +89,6 @@ class LmsSeeder extends Seeder
         User::find(2)->subjects()->attach(Subject::find(1));
 
         $this->command->info('Student diak@iskola.hu subscribed to Subject \'Szerveroldali webprogramozás\'.');
-        
+
     }
 }

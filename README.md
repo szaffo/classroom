@@ -21,7 +21,7 @@ php artisan serve
 Szabó Martin
 CQBO0I
 Szerveroldali webprogramozás & Oktatási rendszer
-Beküldés idejeOktatási rendszer
+2020.05.31 - Oktatási rendszer
 Ezt a megoldást Szabó Martin, Neptun ID küldte be és készítette a Szerveroldali webprogramozás kurzus Oktatási rendszer feladatához.
 Kijelentem, hogy ez a megoldás a saját munkám.
 Nem másoltam vagy használtam harmadik féltől származó megoldásokat.
